@@ -9,7 +9,7 @@ The Bioconductor [`ALL`](https://bioconductor.org/packages/ALL/) data package: p
 ## Workflow
 
 1. **Quality control** of per-sample expression distributions.
-2. **Feature selection** of the 1,000 most variable probe sets (median absolute deviation).
+2. **Feature selection** of the most variable probe sets by median absolute deviation (2,000 for clustering, 1,000 for classification).
 3. **Unsupervised analysis**: PCA, UMAP and k-means with consensus-based stability (PAC), silhouette, and adjusted Rand index against known subtypes.
 4. **Classification**: elastic-net multinomial regression, assessed with repeated stratified 5-fold cross-validation. Gene selection and scaling are fitted only on each training fold to avoid data leakage. A shuffled-label run acts as a negative control.
 
@@ -24,11 +24,11 @@ Outputs are written to `results/`. Software versions are recorded in `results/se
 
 ## Results
 
-<!-- Fill in after running: see the guide. -->
-- Balanced accuracy: **TODO**
-- Shuffled-label control: **TODO**
-- Most stable number of clusters: **TODO**
-- Main observation: **TODO**
+- Balanced accuracy: **0.79 ± 0.03** (mean ± SD over 5 repeats of 5-fold cross-validation)
+- Shuffled-label control: **0.24**, close to the chance level of 0.25
+- Most stable number of clusters: **k = 3** (PAC 0.05), but with low silhouette (0.11) and almost no agreement with known subtypes (ARI 0.02)
+- Recall by subtype: ALL1/AF4 98%, BCR/ABL 89%, NEG 85%, E2A/PBX1 44%. E2A/PBX1 has only 5 patients and was mostly misclassified as NEG.
+- Main observation: subtype labels can be predicted well with supervised learning, but clustering on the most variable genes finds a stable structure that does not correspond to these subtypes. High-variance genes may therefore reflect other sources of variation, so stable clusters should not be assumed to be biological subtypes.
 
 ![UMAP](results/figures/03_umap.png)
 ![Confusion matrix](results/figures/04_confusion_matrix.png)
