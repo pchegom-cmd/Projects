@@ -1,0 +1,5 @@
+install.packages(c("BiocManager", "ggplot2", "uwot", "cluster", "mclust", "glmnet"))
+BiocManager::install(c("Biobase", "ALL"), update = FALSE, ask = FALSE)
+library(ALL)
+data(ALL)
+dim(ALL)

@@ -1,0 +1,5 @@
+"metric","value"
+"balanced_accuracy_mean",0.79
+"balanced_accuracy_sd",0.034
+"shuffled_label_control",0.244
+"chance_level",0.25
